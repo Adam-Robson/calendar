@@ -1,68 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter Variable', system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
+  letter-spacing: 0.055rem;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  text-align: center;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --text: #404144ff;
+    --background: #ebf2faff;
+    --primary: #3f5e5aff;
+    --secondary: #9eb3c2ff;
+    --accent: #fae1ddff;
+    --complement: #d8e1e2ff;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #ebf2faff;
+    --background: #404144ff;
+    --primary: #d8e1e2ff;
+    --secondary: #9eb3c2ff;
+    --accent: #fae1ddff;
+    --complement: #3f5e5aff;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+html,
+body {
+  color: var(--text);
+  background-color: var(--background);
+  min-height: 100vh;
+  width: 100vw;
+}
+
+
+.month {
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.calendar-header {
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid #ccc; /* Add border around the calendar */
+}
+
+.grid-cell {
+  border: 1px solid #ccc; /* Add border around each cell */
+  padding: 8px;
+  margin: 8px;
+}
+
+input,
+input[date],
+select {
+  background-color: var(--bg);
+  color: var(--secondary);
 }
