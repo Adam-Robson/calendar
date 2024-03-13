@@ -6,8 +6,14 @@ export default function App() {
  return (
    <main className="relative min-h-screen w-full flex flex-col items-center justify-center">
      <div><Header /></div>
-      <EventControls />
-      <Calendar />
+     <div className="grid grid-cols-2">
+       <div className="col-span-1">
+         <EventControls />
+       </div>
+       <div className="col-span-1">
+         <Calendar />
+         </div>
+      </div>
     </main>
   )
 }

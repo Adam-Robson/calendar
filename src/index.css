@@ -51,12 +51,7 @@ body {
   width: 100vw;
 }
 
-h1 {
-  font-size: 2rem;
-}
-
-
- button {
+button {
   background-color: var(--text);
   color: var(--background);
   border-radius: 8px;
@@ -64,7 +59,21 @@ h1 {
   padding: 0.5rem 1rem;
   margin: 1rem;
   font-size: 0.75rem;
- }
+}
+
+label {
+  display: block;
+  margin: 0.5rem;
+}
+
+input,
+select {
+  margin: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--secondary);
+  width: 100%;
+  height: 2.5rem;
+}
 
 .month {
   margin: 0 auto;
@@ -81,18 +90,11 @@ h1 {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  border: 1px solid #ccc; /* Add border around the calendar */
+  border: 1px solid #ccc;
 }
 
 .grid-cell {
-  border: 1px solid #ccc; /* Add border around each cell */
+  border: 1px solid #ccc;
   padding: 8px;
   margin: 8px;
-}
-
-input,
-input[date],
-select {
-  background-color: var(--bg);
-  color: var(--secondary);
 }

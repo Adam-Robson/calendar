@@ -54,31 +54,38 @@ export default function EventControls() {
     });
     await res.json();
   }
-
+  console.log(event)
   return (
     <>
-      <div>
-        <label>Start Date</label>
-        <DateTimePicker onChange={(newDate) => setEvent({ ...event, startDate: newDate})} value={event.startDate} />
+      <div className="w-80">
+        <label className="text-xs/5 md:text-sm/7 subpixel-antialiased">Start Date</label>
+        <DateTimePicker
+          name="startDate"
+          onChange={(newDate) => setEvent({ ...event, startDate: newDate })}
+          value={event.startDate}
+        />
       </div>
 
-      <div>
-        <label>End Date</label>
-        <DateTimePicker onChange={(newDate) => setEvent({ ...event, endDate: newDate})} value={event.endDate} />
+      <div className="w-80">
+        <label className="text-xs/5 md:text-sm/7 subpixel-antialiased">End Date</label>
+        <DateTimePicker
+          name="endDate"
+          onChange={(newDate) => setEvent({ ...event, endDate: newDate })}
+          value={event.endDate} />
       </div>
 
-      <div>
-        <label>Title</label>
+      <div className="w-80">
+        <label className="text-xs/5 md:text-sm/7 subpixel-antialiased">Title</label>
         <input type="text" value={event.title} onChange={(e) => setEvent({ ...event, title: e.target.value })} />
       </div>
 
-      <div>
-        <label>Description</label>
+      <div className="w-80">
+        <label className="text-xs/5 md:text-sm/7 subpixel-antialiased">Description</label>
         <input type="text" value={event.description} onChange={(e) => setEvent({ ...event, description: e.target.value })} />
       </div>
 
-      <div>
-        <label>Location</label>
+      <div className="w-80">
+        <label className="text-xs/5 md:text-sm/7 subpixel-antialiased">Location</label>
         <input type="text" value={event.location} onChange={(e) => setEvent({ ...event, location: e.target.value })} />
       </div>
 
