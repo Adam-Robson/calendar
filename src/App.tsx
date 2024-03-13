@@ -5,7 +5,7 @@ export default function App() {
   const session = useSession();
   const client = useSupabaseClient();
 
-   const googleSignIn = async (): Promise<void> => {
+  async function googleSignIn(): Promise<void> {
     const { error } = await client.auth.signInWithOAuth({
       provider: 'google',
       options: {
