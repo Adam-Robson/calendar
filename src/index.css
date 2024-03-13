@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: 'Inter Variable', system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 300;
+  letter-spacing: 0.055rem;
+
+  text-align: center;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #404144ff;
+    --background: #ebf2faff;
+    --primary: #3f5e5aff;
+    --secondary: #9eb3c2ff;
+    --accent: #fae1ddff;
+    --complement: #d8e1e2ff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #ebf2faff;
+    --background: #404144ff;
+    --primary: #d8e1e2ff;
+    --secondary: #9eb3c2ff;
+    --accent: #fae1ddff;
+    --complement: #3f5e5aff;
+  }
+}
+
+html,
+body {
+  color: var(--text);
+  background-color: var(--background);
+  min-height: 100vh;
+  width: 100vw;
+}
+
+
+.month {
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.calendar-header {
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid #ccc; /* Add border around the calendar */
+}
+
+.grid-cell {
+  border: 1px solid #ccc; /* Add border around each cell */
+  padding: 8px;
+  margin: 8px;
+}
+
+input,
+input[date],
+select {
+  background-color: var(--bg);
+  color: var(--secondary);
+}
