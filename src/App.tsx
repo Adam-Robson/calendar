@@ -1,27 +1,11 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-import Loading from './components/Loading';
-import SignOutButton from './components/SignOutButton';
-import { googleSignIn } from './services/auth';
-import { useSession, useSessionContext } from '@supabase/auth-helpers-react';
+import EventControls from "./components/EventControls";
+import Header from "./components/Header";
 
 export default function App() {
-  const session = useSession();
-  const { isLoading } = useSessionContext();
-
-  {isLoading && <Loading />}
-
-  return (
+ return (
     <div>
-      {session ? (
-        <div>
-          <span>Signed in as: {session.user?.email}</span>
-          <SignOutButton />
-       </div>
-      ) : (
-        <div>
-            <button onClick={googleSignIn}>Sign in with Google</button>
-        </div>
-      )}
+      <Header />
+      <EventControls />
     </div>
   )
 }
