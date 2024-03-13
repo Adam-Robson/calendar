@@ -1,42 +1,24 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
+import Loading from './components/Loading';
+import SignOutButton from './components/SignOutButton';
+import { googleSignIn } from './services/auth';
+import { useSession, useSessionContext } from '@supabase/auth-helpers-react';
 
 export default function App() {
   const session = useSession();
-  const client = useSupabaseClient();
   const { isLoading } = useSessionContext();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  async function googleSignIn(): Promise<void> {
-    const { error } = await client.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        scopes: "https://www.googleapis.com/auth/calendar"
-      }
-    });
-
-    if (error) {
-      console.log('Error signing in to Google provider with Supabase: ', error);
-    }
-  }
-
-  async function signOut() {
-    await client.auth.signOut();
-  }
+  {isLoading && <Loading />}
 
   return (
     <div>
       {session ? (
         <div>
           <span>Signed in as: {session.user?.email}</span>
-          <button onClick={signOut}>Sign out</button>
+          <SignOutButton />
        </div>
       ) : (
         <div>
-          <span>Sign in</span>
             <button onClick={googleSignIn}>Sign in with Google</button>
         </div>
       )}
