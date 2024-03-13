@@ -1,9 +1,14 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useSession, useSupabaseClient, useSessionContext } from '@supabase/auth-helpers-react';
 
 export default function App() {
   const session = useSession();
   const client = useSupabaseClient();
+  const { isLoading } = useSessionContext();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   async function googleSignIn(): Promise<void> {
     const { error } = await client.auth.signInWithOAuth({
