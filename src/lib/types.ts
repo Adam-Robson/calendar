@@ -1,3 +1,7 @@
+export interface SignInType {
+  email: string;
+  password: string;
+}
 
 export interface Event {
   id?: string;
