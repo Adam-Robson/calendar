@@ -4,10 +4,16 @@ import Header from "./components/Header";
 
 export default function App() {
  return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-center">
-      <Header />
-      <EventControls />
-      <Calendar />
+   <main className="relative min-h-screen w-full flex flex-col items-center justify-center">
+     <div><Header /></div>
+     <div className="grid grid-cols-2">
+       <div className="col-span-1">
+         <EventControls />
+       </div>
+       <div className="col-span-1">
+         <Calendar />
+         </div>
+      </div>
     </main>
   )
 }
