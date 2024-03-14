@@ -19,7 +19,7 @@ export default function Calendar() {
 
   const calendarArray = [...emptyCellsArray, ...daysArray];
 
-  const years = Array.from({ length: 11 }, (_, index) => 2023 + index)
+  const years = Array.from({ length: 11 }, (_, index) => 2023 + index);
   const months = Array.from({ length: 12 }, (_, index) => ({
     value: index.toString(),
     label: new Date(2000, index).toLocaleString('default', { month: 'long' }),
@@ -59,16 +59,16 @@ export default function Calendar() {
       <div>
 
         <div className="grid-container">
-            {daysOfWeek.map((day, index) => (
-              <div key={index} className="text-sm">
-                {day}
-              </div>
-            ))}
-            {calendarArray.map((day, index) => (
-              <div data-testid="day" key={index} className={`grid-cell ${day ? '' : 'empty'}`}>
-                {day}
-              </div>
-            ))}
+          {daysOfWeek.map((day, index) => (
+            <div key={index} className="text-sm">
+              {day}
+            </div>
+          ))}
+          {calendarArray.map((day, index) => (
+            <div data-testid="day" key={index} className={`grid-cell ${day ? '' : 'empty'}`}>
+              {day}
+            </div>
+          ))}
         </div>
 
       </div>

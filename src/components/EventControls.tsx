@@ -1,18 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 import { useSession } from '@supabase/auth-helpers-react';
-import { Event } from '../lib/types';
+import { EventType } from '../lib/types';
 
 export default function EventControls() {
 
-  const [event, setEvent] = useState<Event>({
+  const [event, setEvent] = useState<EventType>({
+    id: '',
+    createdAt: new Date(),
     title: '',
     description: '',
     startDate: new Date(),
     endDate: new Date(),
-    location: ''
+    location: '',
+    createdBy: ''
   });
 
   const session = useSession();
@@ -42,19 +44,19 @@ export default function EventControls() {
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
       },
       location: event.location
-    }
+    };
 
     const res = await fetch('https://googleapis.com/calendar/v3/calendars/primary/events', {
       method: 'POST',
       headers: {
-        "Authorization": `Bearer ${session?.provider_token}`,
+        'Authorization': `Bearer ${session?.provider_token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newEvent)
     });
     await res.json();
   }
-  console.log(event)
+
   return (
     <>
       <div className="w-80">
@@ -95,5 +97,5 @@ export default function EventControls() {
 
 
     </>
-  )
+  );
 }
