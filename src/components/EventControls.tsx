@@ -23,38 +23,50 @@ export default function EventControls() {
     const newEvent: {
       summary: string;
       description: string;
-      start: {
+      startDate: {
         dateTime: string | undefined;
         timeZone: string;
       };
-      end: {
+      endDate: {
         dateTime: string | undefined;
         timeZone: string;
       };
       location: string;
+      createdBy: string;
     } = {
-      summary: event.title,
+      summary: event.title ?? '',
       description: event.description,
-      start: {
+      startDate: {
         dateTime: event.startDate?.toISOString(),
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
       },
-      end: {
+      endDate: {
         dateTime: event.endDate?.toISOString(),
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
       },
-      location: event.location
+      location: event.location,
+      createdBy: session?.user?.email ?? ''
+
     };
 
-    const res = await fetch('https://googleapis.com/calendar/v3/calendars/primary/events', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${session?.provider_token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newEvent)
-    });
-    await res.json();
+    try {
+      const res = await fetch('https://googleapis.com/calendar/v3/calendars/primary/events', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${session?.provider_token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newEvent)
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      await res.json();
+    } catch (error) {
+      console.error('An error occurred while fetching the data: ', error);
+    }
   }
 
   return (
@@ -63,7 +75,7 @@ export default function EventControls() {
         <label className="text-xs/5 md:text-sm/7 subpixel-antialiased">Start Date</label>
         <DateTimePicker
           name="startDate"
-          onChange={(newDate) => setEvent({ ...event, startDate: newDate })}
+          onChange={(newDate) => setEvent({ ...event, startDate: newDate ?? new Date() })}
           value={event.startDate}
         />
       </div>
@@ -72,7 +84,7 @@ export default function EventControls() {
         <label className="text-xs/5 md:text-sm/7 subpixel-antialiased">End Date</label>
         <DateTimePicker
           name="endDate"
-          onChange={(newDate) => setEvent({ ...event, endDate: newDate })}
+          onChange={(newDate) => setEvent({ ...event, endDate: newDate ?? new Date() })}
           value={event.endDate} />
       </div>
 
